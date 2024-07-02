@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 
 type InputType = {
-    value: number
+    value: number | string
     onChange: (e: ChangeEvent<HTMLInputElement>)=>void
 }
 export const Input = (props:InputType) => {
