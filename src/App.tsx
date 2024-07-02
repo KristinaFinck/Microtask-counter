@@ -2,36 +2,41 @@ import React, {ChangeEvent, useState} from 'react';
 import './App.css';
 import {Button} from "./button/Button";
 import {Input} from './input/Input'
+import {isDisabled} from "@testing-library/user-event/dist/utils";
 
 function App() {
-    let startValue = 2;
-
+    let [startValue, setStartValue] = useState(0)
     let [currentValue, setCurrentValue] = useState(startValue)
-    let [maxInputValue, setMaxInputValue] = useState(0)
+    let [maxValue, setMaxValue] = useState(0)
 
-    let onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxInputValue(Number(e.currentTarget.value));
+    let onChangeMaxInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setMaxValue(Number(e.currentTarget.value));
     }
-
+    let onChangeStartInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setStartValue(Number(e.currentTarget.value));
+    }
     const onClickAddCount = () => {
         setCurrentValue(currentValue + 1);
-    }
-    const onClickReset = () => {
-        setCurrentValue(startValue);
-    }
+        }
 
+    const onClickReset = () => {
+        setCurrentValue(startValue)
+    }
+    const onClickSet = () => {
+        setCurrentValue(startValue)
+    }
     return (
         <div className="App">
-            <div className= "Settings" >
+            <div className="Settings">
                 <h2> max value</h2>
-                <Input  value = {maxInputValue} onChange = {onChangeInputHandler} />
+                <Input value={maxValue} onChange={onChangeMaxInputHandler}/>
                 <h2> start value</h2>
-                <Input  value = {startValue} onChange = {()=>{}} />
-                <Button title={'set'} onClick={()=> {}} />
+                <Input value={startValue} onChange={onChangeStartInputHandler}/>
+                <Button title={'set'} onClick={onClickSet}/>
             </div>
             <h1>{currentValue}</h1>
-            <Button title= {'inc'} onClick={onClickAddCount}/>
-            <Button title= {'reset'} onClick={onClickReset}/>
+            <Button title={'inc'} onClick={onClickAddCount} disabled={currentValue === maxValue}/>
+            <Button title={'reset'} onClick={onClickReset}/>
         </div>
     );
 }
