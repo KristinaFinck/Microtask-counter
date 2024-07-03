@@ -4,59 +4,102 @@ import {Button} from "./button/Button";
 import {Input} from './input/Input'
 
 function App() {
-    let [startValue, setStartValue] = useState(0)
+    let [startValue, setStartValue] = useState<number>(0)
     let [currentValue, setCurrentValue] = useState<number>(startValue)
-    let [maxValue, setMaxValue] = useState<number | string>("0")
-    let [isButtonDisabled, setIsButtonDisabled] = useState(true)
+    let [maxValue, setMaxValue] = useState<number>(0)
+    let [isSetButtonDisabled, setSetButtonDisabled] = useState(true)
     let [errorMessage, setErrorMessage] = useState('')
+    let [settingMessage, setSettingMessage] = useState('')
+    let [isIncButtonDisabled, setIncButtonDisabled] = useState(true)
+let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
 
+    let error = "incorrect value!"
     let onChangeMaxInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        const inputValue = e.currentTarget.value.trim();
-        setMaxValue(inputValue); // сохраняем введенное значение как строку
-
-        const newValueInTheInput = Number(inputValue);
-        if (Number.isInteger(newValueInTheInput) && newValueInTheInput >= 0) {
-            setIsButtonDisabled(false);
+        const inputMaxValue = Number(e.currentTarget.value);
+        setSettingMessage("enter values and press 'set'");
+        if (inputMaxValue >= 0) {
+            setSetButtonDisabled(false);
+            setMaxValue(inputMaxValue)
             setErrorMessage('');
         } else {
-            setIsButtonDisabled(true);
-            setErrorMessage("Enter a positive integer");
+            setSettingMessage('')
+            setMaxValue(inputMaxValue)
+            setSetButtonDisabled(true);
+            setErrorMessage(error);
         }
     };
 
     let onChangeStartInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(Number(e.currentTarget.value));
+        const inputStartValue = Number(e.currentTarget.value)
+        setSettingMessage("enter values and press 'set'");
+        if (inputStartValue >= 0 && inputStartValue < maxValue) {
+            setSetButtonDisabled(false);
+            setStartValue(inputStartValue)
+            setErrorMessage('');
+
+        } else {
+            setSettingMessage('')
+            setStartValue(inputStartValue)
+            setSetButtonDisabled(true);
+            setErrorMessage(error);
+        }
     }
     const onClickAddCount = () => {
-        setCurrentValue(currentValue + 1);
-    }
+        if (errorMessage) {
+            setIncButtonDisabled(true);
+        } else if (currentValue + 1 < maxValue) {
+            setCurrentValue(currentValue + 1);
+            setIncButtonDisabled(false);
+        } else {
+            setCurrentValue(currentValue + 1);
+            setIncButtonDisabled(true);
+        }
+    };
 
     const onClickReset = () => {
         setCurrentValue(startValue)
+        setIncButtonDisabled(false)
+    if (errorMessage) {
+            setResetButtonDisabled(true)
+        }
     }
     const onClickSet = () => {
+        setSettingMessage('')
         setCurrentValue(startValue)
-        if (maxValue > startValue) {
-            setIsButtonDisabled(false)
-        } else {
-            setIsButtonDisabled(true)
-            setErrorMessage("set correct value")
+        setSetButtonDisabled(true)
+        setIncButtonDisabled(false)
+        setResetButtonDisabled(false)
+        if (errorMessage) {
+            setSetButtonDisabled(true)
         }
     }
     return (
         <div className="App">
             <div className="Settings">
                 <h2> max value</h2>
-                <Input value={maxValue} onChange={onChangeMaxInputHandler}/>
+                <Input
+                    type='number'
+                    value={maxValue}
+                    onChange={onChangeMaxInputHandler}/>
                 <h2> start value</h2>
-                <Input value={startValue} onChange={onChangeStartInputHandler}/>
-                <Button title={'set'} onClick={onClickSet} disabled={isButtonDisabled}/>
+                <Input
+                    type='number' value={startValue} onChange={onChangeStartInputHandler}/>
+                <Button
+                    title={'set'}
+                    onClick={onClickSet}
+                    disabled={isSetButtonDisabled}/>
             </div>
             <div>
-                {errorMessage || <h1>{currentValue}</h1>}
+                {settingMessage || errorMessage || <h1>{currentValue}</h1>}
 
-                <Button title={'inc'} onClick={onClickAddCount} disabled={currentValue === maxValue}/>
-                <Button title={'reset'} onClick={onClickReset}/>
+                <Button
+                    title={'inc'}
+                    onClick={onClickAddCount}
+                    disabled={isIncButtonDisabled}/>
+                <Button
+                    title={'reset'}
+                    onClick={onClickReset}
+                disabled={isResetButtonDisabled}/>
             </div>
         </div>
     );
