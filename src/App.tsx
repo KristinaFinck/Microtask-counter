@@ -27,6 +27,9 @@ let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
             setSetButtonDisabled(true);
             setErrorMessage(error);
         }
+        // Disable inc and reset buttons while setting new values
+        setIncButtonDisabled(true);
+        setResetButtonDisabled(true);
     };
 
     let onChangeStartInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +46,9 @@ let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
             setSetButtonDisabled(true);
             setErrorMessage(error);
         }
+        // Disable inc and reset buttons while setting new values
+        setIncButtonDisabled(true);
+        setResetButtonDisabled(true);
     }
     const onClickAddCount = () => {
         if (errorMessage) {
