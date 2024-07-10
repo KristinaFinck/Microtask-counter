@@ -1,7 +1,14 @@
 import React, {ChangeEvent, useState} from 'react';
-import './App.css';
 import {Button} from "./button/Button";
-import {Input} from './input/Input'
+import {Input} from './input/Input';
+import {
+    GlobalStyle,
+    WrapContainer,
+    ExternalContainer,
+    Tableau,
+    InternalContainer,
+    SettingsContainer, InternalSettingsContainer, StyledInput, Values
+} from './styles/Styles';
 
 function App() {
     let [startValue, setStartValue] = useState<number>(0)
@@ -11,7 +18,7 @@ function App() {
     let [errorMessage, setErrorMessage] = useState('')
     let [settingMessage, setSettingMessage] = useState('')
     let [isIncButtonDisabled, setIncButtonDisabled] = useState(true)
-let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
+    let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
 
     let error = "incorrect value!"
     let onChangeMaxInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +72,7 @@ let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
     const onClickReset = () => {
         setCurrentValue(startValue)
         setIncButtonDisabled(false)
-    if (errorMessage) {
+        if (errorMessage) {
             setResetButtonDisabled(true)
         }
     }
@@ -80,34 +87,53 @@ let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
         }
     }
     return (
-        <div className="App">
-            <div className="Settings">
-                <h2> max value</h2>
-                <Input
-                    type='number'
-                    value={maxValue}
-                    onChange={onChangeMaxInputHandler}/>
-                <h2> start value</h2>
-                <Input
-                    type='number' value={startValue} onChange={onChangeStartInputHandler}/>
-                <Button
-                    title={'set'}
-                    onClick={onClickSet}
-                    disabled={isSetButtonDisabled}/>
-            </div>
-            <div>
-                {settingMessage || errorMessage || <h1>{currentValue}</h1>}
+        <>
+            <GlobalStyle/>
+            <WrapContainer>
+                <ExternalContainer>
 
-                <Button
-                    title={'inc'}
-                    onClick={onClickAddCount}
-                    disabled={isIncButtonDisabled}/>
-                <Button
-                    title={'reset'}
-                    onClick={onClickReset}
-                disabled={isResetButtonDisabled}/>
-            </div>
-        </div>
+                    <SettingsContainer>
+                        <InternalSettingsContainer>
+                            <Values> max value</Values>
+                            <StyledInput
+                                type='number'
+                                value={maxValue}
+                                onChange={onChangeMaxInputHandler}/>
+                        </InternalSettingsContainer>
+                        <InternalSettingsContainer>
+                            <Values> start value</Values>
+                            <StyledInput
+                                type='number'
+                                value={startValue}
+                                onChange={onChangeStartInputHandler}/>
+                        </InternalSettingsContainer>
+                    </SettingsContainer>
+                    <InternalContainer>
+                        <Button
+                            title={'set'}
+
+                            onClick={onClickSet}
+                            disabled={isSetButtonDisabled}/>
+
+                    </InternalContainer>
+                </ExternalContainer>
+                <ExternalContainer>
+                    <InternalContainer>
+                        <Tableau>{settingMessage || errorMessage || <h1>{currentValue}</h1>} </Tableau>
+                    </InternalContainer>
+                    <InternalContainer>
+                        <Button
+                            title={'inc'}
+                            onClick={onClickAddCount}
+                            disabled={isIncButtonDisabled}/>
+                        <Button
+                            title={'reset'}
+                            onClick={onClickReset}
+                            disabled={isResetButtonDisabled}/>
+                    </InternalContainer>
+                </ExternalContainer>
+            </WrapContainer>
+        </>
     );
 }
 
