@@ -2,11 +2,11 @@ import React, {ChangeEvent, useState} from 'react';
 import {Button} from "./button/Button";
 import {Input} from './input/Input';
 
-import { ThemeProvider } from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 import {
     GlobalStyle,
     Container,
-     StyledInput, Values
+    StyledInput, Values
 } from './styles/Styles';
 import {theme} from "./styles/theme";
 
@@ -89,25 +89,45 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyle/>
+            {/*Wrap container*/}
             <Container
-            flexDirection = 'row'
-            gap = '20px'
-            justifyContent = 'space-between'
-            maxWidth = '1200px'
-            width="100%"
-            padding="20px"
+                flexDirection='row'
+                gap='20px'
+                justifyContent='space-between'
+                maxWidth='1200px'
+                width="100%"
+                padding="20px"
             >
-                <Container>
+                {/*Left external container */}
+                <Container
+                    flexDirection = 'column'
+                    width='100%'
+                    padding="20px"
+                >
+                    {/*Internal container */}
+                    <Container
+                        width = '100%'
+                        flexDirection = 'column'
+                    >
+                        {/*Internal Settings container */}
+                        <Container
 
-                    <Container>
-                        <Container   >
+                            width = '100%'
+                            justifyContent='space-evenly'
+                            alignItems='center'
+                            padding='10px'
+                        >
                             <Values> max value</Values>
                             <StyledInput
                                 type='number'
                                 value={maxValue}
                                 onChange={onChangeMaxInputHandler}/>
                         </Container>
-                        <Container>
+                        <Container
+                            width = '100%'
+                            justifyContent='space-evenly'
+                            alignItems='center'
+                            padding='10px'>
                             <Values> start value</Values>
                             <StyledInput
                                 type='number'
@@ -115,18 +135,42 @@ function App() {
                                 onChange={onChangeStartInputHandler}/>
                         </Container>
                     </Container>
-                    <Container>
+                    {/*Set button container*/}
+                    <Container
+width = '100%'
+justifyContent = 'center'
+alignItems = 'center'
+                    >
                         <Button
                             title={'set'}
                             onClick={onClickSet}
                             disabled={isSetButtonDisabled}/>
                     </Container>
                 </Container>
-                <Container>
-                    <Container>
-                        {settingMessage || errorMessage || <Container>{currentValue}</Container>}
+                {/* Right external container*/}
+                <Container
+                    flexDirection = 'column'
+                    width='100%'
+                    padding="20px"
+                >
+                    {/*Tableau container*/}
+                    <Container
+                    justifyContent= 'center'
+                    alignItems = 'center'
+                    fontSize = ' 1em'
+                    >
+                        {settingMessage || errorMessage
+                            ||
+                            <span>{currentValue}</span>}
                     </Container>
-                    <Container>
+
+                    <Container
+                        justifyContent= 'space-evenly'
+                        alignItems = 'center'
+                        width = '100%'
+
+
+                    >
                         <Button
                             title={'inc'}
                             onClick={onClickAddCount}
