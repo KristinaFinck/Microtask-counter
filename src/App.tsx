@@ -1,14 +1,14 @@
 import React, {ChangeEvent, useState} from 'react';
 import {Button} from "./button/Button";
 import {Input} from './input/Input';
+
+import { ThemeProvider } from 'styled-components';
 import {
     GlobalStyle,
-    WrapContainer,
-    ExternalContainer,
-    Tableau,
-    InternalContainer,
-    SettingsContainer, InternalSettingsContainer, StyledInput, Values
+    Container,
+     StyledInput, Values
 } from './styles/Styles';
+import {theme} from "./styles/theme";
 
 function App() {
     let [startValue, setStartValue] = useState<number>(0)
@@ -87,53 +87,59 @@ function App() {
         }
     }
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <GlobalStyle/>
-            <WrapContainer>
-                <ExternalContainer>
+            <Container
+            flexDirection = 'row'
+            gap = '20px'
+            justifyContent = 'space-between'
+            maxWidth = '1200px'
+            width="100%"
+            padding="20px"
+            >
+                <Container>
 
-                    <SettingsContainer>
-                        <InternalSettingsContainer>
+                    <Container>
+                        <Container   >
                             <Values> max value</Values>
                             <StyledInput
                                 type='number'
                                 value={maxValue}
                                 onChange={onChangeMaxInputHandler}/>
-                        </InternalSettingsContainer>
-                        <InternalSettingsContainer>
+                        </Container>
+                        <Container>
                             <Values> start value</Values>
                             <StyledInput
                                 type='number'
                                 value={startValue}
                                 onChange={onChangeStartInputHandler}/>
-                        </InternalSettingsContainer>
-                    </SettingsContainer>
-                    <InternalContainer>
+                        </Container>
+                    </Container>
+                    <Container>
                         <Button
                             title={'set'}
-
                             onClick={onClickSet}
                             disabled={isSetButtonDisabled}/>
-
-                    </InternalContainer>
-                </ExternalContainer>
-                <ExternalContainer>
-                    <InternalContainer>
-                        <Tableau>{settingMessage || errorMessage || <h1>{currentValue}</h1>} </Tableau>
-                    </InternalContainer>
-                    <InternalContainer>
+                    </Container>
+                </Container>
+                <Container>
+                    <Container>
+                        {settingMessage || errorMessage || <Container>{currentValue}</Container>}
+                    </Container>
+                    <Container>
                         <Button
                             title={'inc'}
                             onClick={onClickAddCount}
                             disabled={isIncButtonDisabled}/>
+
                         <Button
                             title={'reset'}
                             onClick={onClickReset}
                             disabled={isResetButtonDisabled}/>
-                    </InternalContainer>
-                </ExternalContainer>
-            </WrapContainer>
-        </>
+                    </Container>
+                </Container>
+            </Container>
+        </ThemeProvider>
     );
 }
 
