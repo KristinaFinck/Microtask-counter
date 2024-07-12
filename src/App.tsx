@@ -17,8 +17,8 @@ function App() {
     let [isSetButtonDisabled, setSetButtonDisabled] = useState(true)
     let [errorMessage, setErrorMessage] = useState('')
     let [settingMessage, setSettingMessage] = useState('')
-    let [isIncButtonDisabled, setIncButtonDisabled] = useState(true)
-    let [isResetButtonDisabled, setResetButtonDisabled] = useState(true)
+    let [isIncButtonDisabled, setIncButtonDisabled] = useState(false)
+    let [isResetButtonDisabled, setResetButtonDisabled] = useState(false)
 
     let error = "incorrect value!"
     let onChangeMaxInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -94,25 +94,28 @@ function App() {
                 flexDirection='row'
                 gap='20px'
                 justifyContent='space-between'
-                maxWidth='1200px'
-                width="100%"
+                maxWidth='980px'
+                minHeight = '100%'
+                width='auto'
                 padding="20px"
             >
                 {/*Left external container */}
                 <Container
-                    flexDirection = 'column'
+                    flexDirection='column'
                     width='100%'
                     padding="20px"
+                    flex="1"
                 >
                     {/*Internal container */}
                     <Container
-                        width = '100%'
-                        flexDirection = 'column'
+                        flex='2'
+                        padding = '0'
+                        width='100%'
+                        flexDirection='column'
                     >
-                        {/*Internal Settings container */}
+                        {/*Internal Settings container maxValue */}
                         <Container
-
-                            width = '100%'
+                            width='100%'
                             justifyContent='space-evenly'
                             alignItems='center'
                             padding='10px'
@@ -123,8 +126,9 @@ function App() {
                                 value={maxValue}
                                 onChange={onChangeMaxInputHandler}/>
                         </Container>
+                        {/*Internal settings start Value container*/}
                         <Container
-                            width = '100%'
+                            width='100%'
                             justifyContent='space-evenly'
                             alignItems='center'
                             padding='10px'>
@@ -137,38 +141,46 @@ function App() {
                     </Container>
                     {/*Set button container*/}
                     <Container
-width = '100%'
-justifyContent = 'center'
-alignItems = 'center'
+                        flex='1'
+                        width='100%'
+                        justifyContent='center'
+                        alignItems='center'
+                        padding = '20px'
                     >
                         <Button
                             title={'set'}
                             onClick={onClickSet}
-                            disabled={isSetButtonDisabled}/>
+                            disabled={isSetButtonDisabled}
+                            backgroundColor = 'secondary'
+                            color = 'primary'
+                        />
                     </Container>
                 </Container>
                 {/* Right external container*/}
                 <Container
-                    flexDirection = 'column'
+                    flexDirection='column'
                     width='100%'
                     padding="20px"
+                    flex="1"
                 >
                     {/*Tableau container*/}
                     <Container
-                    justifyContent= 'center'
-                    alignItems = 'center'
-                    fontSize = ' 1em'
+                        flex='2'
+                        justifyContent='center'
+                        alignItems='center'
+                        fontSize=' 4em'
                     >
                         {settingMessage || errorMessage
                             ||
                             <span>{currentValue}</span>}
                     </Container>
-
+                    {/*Inc-Reset buttons container*/}
                     <Container
-                        justifyContent= 'space-evenly'
-                        alignItems = 'center'
-                        width = '100%'
-
+                        flex = '1'
+                        justifyContent='space-evenly'
+                        alignItems='center'
+                        width='100%'
+padding = '20px'
 
                     >
                         <Button
