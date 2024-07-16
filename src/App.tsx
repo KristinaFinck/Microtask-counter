@@ -92,33 +92,32 @@ function App() {
             {/*Wrap container*/}
             <Container
                 flexDirection='row'
-                gap='20px'
                 justifyContent='space-between'
-                maxWidth='980px'
-                minHeight = '100%'
-                width='auto'
-                padding="20px"
+                maxWidth='1200px'
+                minHeight='100%'
+                width='80%'
+                border='none'
+
+
             >
                 {/*Left external container */}
                 <Container
                     flexDirection='column'
                     width='100%'
-                    padding="20px"
                     flex="1"
+                    padding = '30px'
                 >
-                    {/*Internal container */}
+                    {/*Left Internal container */}
                     <Container
-                        flex='2'
-                        padding = '0'
+
                         width='100%'
                         flexDirection='column'
                     >
                         {/*Internal Settings container maxValue */}
                         <Container
                             width='100%'
-                            justifyContent='space-evenly'
-                            alignItems='center'
-                            padding='10px'
+
+                            border='none'
                         >
                             <Values> max value</Values>
                             <StyledInput
@@ -129,9 +128,8 @@ function App() {
                         {/*Internal settings start Value container*/}
                         <Container
                             width='100%'
-                            justifyContent='space-evenly'
-                            alignItems='center'
-                            padding='10px'>
+                            border='none'
+                        >
                             <Values> start value</Values>
                             <StyledInput
                                 type='number'
@@ -142,56 +140,77 @@ function App() {
                     {/*Set button container*/}
                     <Container
                         flex='1'
+
                         width='100%'
-                        justifyContent='center'
-                        alignItems='center'
-                        padding = '20px'
                     >
                         <Button
-                            title={'set'}
+
                             onClick={onClickSet}
                             disabled={isSetButtonDisabled}
-                            backgroundColor = 'secondary'
-                            color = 'primary'
-                        />
+                            backgroundColor='secondary'
+                            color='primary'
+                            width='100px'
+                            height='50px'
+                            justifyContent='center'
+                            alignItems='center'
+
+                            fontSize='1em'
+                        >set</Button>
                     </Container>
                 </Container>
                 {/* Right external container*/}
                 <Container
+                    flex='1'
                     flexDirection='column'
                     width='100%'
-                    padding="20px"
-                    flex="1"
+                    padding = '30px'
+                    alignSelf='stretch'
                 >
+
                     {/*Tableau container*/}
                     <Container
                         flex='2'
-                        justifyContent='center'
-                        alignItems='center'
                         fontSize=' 4em'
+                        width='100%'
+
                     >
                         {settingMessage || errorMessage
                             ||
                             <span>{currentValue}</span>}
+
                     </Container>
                     {/*Inc-Reset buttons container*/}
                     <Container
-                        flex = '1'
-                        justifyContent='space-evenly'
-                        alignItems='center'
                         width='100%'
-padding = '20px'
+
 
                     >
                         <Button
-                            title={'inc'}
+
                             onClick={onClickAddCount}
-                            disabled={isIncButtonDisabled}/>
+                            disabled={isIncButtonDisabled}
+                            backgroundColor='secondary'
+                            color='primary'
+                            width='80px'
+                            height='50px'
+                            justifyContent='center'
+                            alignItems='center'
+
+                            fontSize='1em'
+                        >inc</Button>
 
                         <Button
-                            title={'reset'}
+
                             onClick={onClickReset}
-                            disabled={isResetButtonDisabled}/>
+                            disabled={isResetButtonDisabled}
+                            backgroundColor='secondary'
+                            color='primary'
+                            width='80px'
+                            height='50px'
+                            justifyContent='center'
+                            alignItems='center'
+
+                            fontSize='1em'>reset</Button>
                     </Container>
                 </Container>
             </Container>
