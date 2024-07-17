@@ -1,27 +1,8 @@
 import styled, {createGlobalStyle} from 'styled-components';
 import {FC, JSXElementConstructor, ReactElement} from "react";
+import {ThemeType, theme} from './theme'
 
 
-// export const GlobalStyle = createGlobalStyle `
-// html, body{
-//  height: 100%;
-//  width: 100%;
-//  display: flex;
-//  align-items: center;
-//  justify-content: center;
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-//   background-color: ${({theme}) => theme.colors.primary};
-//   font-family: Arial, Helvetica, sans-serif;
-//  color: ${({ theme }) => theme.colors.secondary};
-//
-// }
-// *, *::before, *::after {
-//  box-sizing: inherit;
-//
-// }
-// `
 export const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
@@ -61,6 +42,7 @@ type InternalProps = {
     flex?: string
     border?: string
     alignSelf?: string
+
 }
 // Контейнер
 export const Container = styled.div<InternalProps>`
@@ -79,14 +61,27 @@ export const Container = styled.div<InternalProps>`
   align-self: ${({alignSelf}) => alignSelf};
 `;
 
-
-export const StyledInput = styled.input`
-  background-color: lightsteelblue;
+type InputProps = {
+    hasError?: boolean
+    backgroundColor?: string
+    color?: string
+    fontSize?: string
+    width?: string
+    border?: string
+    borderRadius?: string
+    theme?: ThemeType
+}
+export const StyledInput = styled.input<InputProps>`
+  background-color: ${({hasError}) => (hasError ? 'lightcoral' : 'lightsteelblue')};
   color: ${({theme}) => theme.colors.primary};
-  font-size: 1em;
-  width: 70px;
-  border: 2px solid darkcyan;
+  font-size: ${({fontSize}) => fontSize || '1em'};
+  width: ${({width}) => width || '70px'};
+  border: 2px solid ${({hasError}) => (hasError ? theme.colors.errorColor : theme.colors.secondary)};
   border-radius: 5px;
+  
+  &:focus {
+    outline: none; /* Убираем фокус */
+  }
 `
 export const Values = styled.span`
   color: ${({theme}) => theme.colors.secondary};

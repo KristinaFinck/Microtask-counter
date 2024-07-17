@@ -123,7 +123,9 @@ function App() {
                             <StyledInput
                                 type='number'
                                 value={maxValue}
-                                onChange={onChangeMaxInputHandler}/>
+                                onChange={onChangeMaxInputHandler}
+                                hasError={!!errorMessage} // Передаем значение hasError
+                            />
                         </Container>
                         {/*Internal settings start Value container*/}
                         <Container
@@ -134,7 +136,9 @@ function App() {
                             <StyledInput
                                 type='number'
                                 value={startValue}
-                                onChange={onChangeStartInputHandler}/>
+                                onChange={onChangeStartInputHandler}
+                                hasError={!!errorMessage} // Передаем значение hasError
+                            />
                         </Container>
                     </Container>
                     {/*Set button container*/}
