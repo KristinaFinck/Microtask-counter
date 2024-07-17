@@ -6,7 +6,7 @@ import {ThemeProvider} from 'styled-components';
 import {
     GlobalStyle,
     Container,
-    StyledInput, Values
+    StyledInput, StyledSpan
 } from './styles/Styles';
 import {theme} from "./styles/theme";
 
@@ -119,7 +119,7 @@ function App() {
 
                             border='none'
                         >
-                            <Values> max value</Values>
+                            <StyledSpan> max value</StyledSpan>
                             <StyledInput
                                 type='number'
                                 value={maxValue}
@@ -132,7 +132,7 @@ function App() {
                             width='100%'
                             border='none'
                         >
-                            <Values> start value</Values>
+                            <StyledSpan> start value</StyledSpan>
                             <StyledInput
                                 type='number'
                                 value={startValue}
@@ -153,7 +153,7 @@ function App() {
                             disabled={isSetButtonDisabled}
                             backgroundColor='secondary'
                             color='primary'
-                            width='100px'
+                            width='80px'
                             height='50px'
                             justifyContent='center'
                             alignItems='center'
@@ -173,14 +173,25 @@ function App() {
 
                     {/*Tableau container*/}
                     <Container
-                        flex='2'
-                        fontSize=' 4em'
-                        width='100%'
-
-                    >
-                        {settingMessage || errorMessage
-                            ||
-                            <span>{currentValue}</span>}
+                            flex='2'
+                            width='100%'
+                            >
+                        {settingMessage ? (
+                            <StyledSpan color={theme.colors.secondary}>
+                                {settingMessage}
+                            </StyledSpan>
+                        ) : errorMessage ? (
+                            <StyledSpan color={theme.colors.errorColor}>
+                                {errorMessage}
+                            </StyledSpan>
+                        ) : (
+                            <StyledSpan
+                                fontSize="4em"
+                                color={currentValue === maxValue && currentValue > 0 ? theme.colors.errorColor : theme.colors.secondary}
+                            >
+                                {currentValue}
+                            </StyledSpan>
+                        )}
 
                     </Container>
                     {/*Inc-Reset buttons container*/}

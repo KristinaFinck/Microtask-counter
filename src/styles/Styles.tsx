@@ -70,6 +70,7 @@ type InputProps = {
     border?: string
     borderRadius?: string
     theme?: ThemeType
+    textAlign?: string;
 }
 export const StyledInput = styled.input<InputProps>`
   background-color: ${({hasError}) => (hasError ? 'lightcoral' : 'lightsteelblue')};
@@ -78,17 +79,31 @@ export const StyledInput = styled.input<InputProps>`
   width: ${({width}) => width || '70px'};
   border: 2px solid ${({hasError}) => (hasError ? theme.colors.errorColor : theme.colors.secondary)};
   border-radius: 5px;
+  text-align: center;
   
   &:focus {
     outline: none; /* Убираем фокус */
   }
 `
-export const Values = styled.span`
-  color: ${({theme}) => theme.colors.secondary};
-  margin: 10px;
-  font-size: 1.5em;
-  white-space: nowrap; /* Предотвращаем перенос текста */
-  display: flex;
-  align-items: center; /* Выровнять текст по центру по вертикали */
-`
 
+
+type SpanType = {
+    fontSize?: string
+    color?: string
+    hasError? : boolean
+    theme?: ThemeType
+    display?: string
+    alignItems?: string
+    justifyContent?: string
+    whiteSpace?: string
+
+}
+export const StyledSpan = styled.span<SpanType>`
+ color: ${({hasError, theme, color}) => (hasError ? theme.colors.errorColor :  color || theme.colors.secondary) };
+font-size: ${({fontSize}) => fontSize || '1.5em'};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  
+`

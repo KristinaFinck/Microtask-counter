@@ -42,7 +42,7 @@ export const StyledButton = styled.button<ButtonPropsType>`
   &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    border: none;
+    border: 2px solid darkcyan;
     border-radius: inherit;
     width: 80px;
     height: 50px;
