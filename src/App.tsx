@@ -93,9 +93,9 @@ function App() {
             <Container
                 flexDirection='row'
                 justifyContent='space-between'
-                maxWidth='1200px'
                 minHeight='100%'
-                width='80%'
+                maxWidth= '980px'
+
                 border='none'
             >
                 {/*Left external container */}
@@ -103,7 +103,7 @@ function App() {
                     flexDirection='column'
                     width='100%'
                     flex="1"
-                    padding = '30px'
+                    padding='30px'
                 >
                     {/*Left Internal container */}
                     <Container
@@ -114,7 +114,7 @@ function App() {
                         {/*Internal Settings container maxValue */}
                         <Container
                             width='100%'
-
+                            padding='0'
                             border='none'
                         >
                             <StyledSpan> max value</StyledSpan>
@@ -129,6 +129,7 @@ function App() {
                         <Container
                             width='100%'
                             border='none'
+                            padding='0'
                         >
                             <StyledSpan> start value</StyledSpan>
                             <StyledInput
@@ -157,15 +158,15 @@ function App() {
                     flex='1'
                     flexDirection='column'
                     width='100%'
-                    padding = '30px'
+                    padding='30px'
                     alignSelf='stretch'
                 >
 
                     {/*Tableau container*/}
                     <Container
-                            flex='2'
-                            width='100%'
-                            >
+                        flex='2'
+                        width='100%'
+                    >
                         {settingMessage ? (
                             <StyledSpan color={theme.colors.secondary}>
                                 {settingMessage}
@@ -202,7 +203,7 @@ function App() {
 
                             onClick={onClickReset}
                             disabled={isResetButtonDisabled}
-                           >
+                        >
                             reset
                         </Button>
                     </Container>

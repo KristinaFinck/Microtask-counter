@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 type InternalProps = {
-    children: any
+    children?: any
     flexDirection?: 'row' | 'column'
     gap?: string
     justifyContent?: string
@@ -51,9 +51,9 @@ export const Container = styled.div<InternalProps>`
   gap: ${({gap}) => gap || '30px'};
   justify-content: ${({justifyContent}) => justifyContent || 'space-evenly'};
   align-items: ${({alignItems}) => alignItems || 'center'};
-  max-width: ${(props => props.maxWidth && 'auto')};
+  max-width: ${(props => props.maxWidth && '980px')};
   width: ${({width}) => width};
-  padding: ${({padding}) => padding || '0'};
+  padding: ${({padding}) => padding || '20px 0'};
   border: ${({border}) => border || 'solid 2px cyan'};
   border-radius: 10px;
   font-size: ${({fontSize}) => fontSize};
