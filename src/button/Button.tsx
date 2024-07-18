@@ -3,8 +3,8 @@ import React from "react";
 
 // Типизация пропсов
 export type ButtonPropsType = {
-    onClick: () => void;
-    disabled: boolean;
+    onClick?: () => void;
+    disabled?: boolean;
     display?: string;
     backgroundColor?: 'primary' | 'secondary';
     color?: string;
@@ -16,9 +16,9 @@ export type ButtonPropsType = {
     textAlign?: string;
     justifyContent?: string;
     alignItems?: string;
-    width: string
-    height: string
-    children: string
+    width?: string
+    height?: string
+    children?: string
 
 };
 
@@ -26,8 +26,8 @@ export type ButtonPropsType = {
 export const StyledButton = styled.button<ButtonPropsType>`
   background-color: ${({ theme, backgroundColor }) => theme.colors[backgroundColor || 'secondary']};
   color: ${({ theme, color }) => theme.colors[color || 'primary']};
-  font-size: ${({ fontSize }) => fontSize || '1em'};
-  padding: ${({ padding }) => padding || '10px 20px'};
+  font-size: ${({ fontSize }) => fontSize || '1.5em'};
+  padding: ${({ padding }) => padding || '0'};
   border: ${({ border }) => border || 'solid 2px cyan'};
   border-radius: ${({ borderRadius }) => borderRadius || '5px'};
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
@@ -35,8 +35,8 @@ export const StyledButton = styled.button<ButtonPropsType>`
   display: ${({ display }) => display || 'block'};
   justify-content: ${({ justifyContent }) => justifyContent || 'center'};
   align-items: ${({ alignItems }) => alignItems || 'center'};
- width: ${({width}) => width || '80px'};
-  height: ${({height}) => height || '50px'};
+ width: ${({width}) => width || '6em'};
+  height: ${({height}) => height || '2em'};
   transition: width 0.3s ease, height 0.3s ease;
   
   &:disabled {
@@ -44,8 +44,8 @@ export const StyledButton = styled.button<ButtonPropsType>`
     cursor: not-allowed;
     border: 2px solid darkcyan;
     border-radius: inherit;
-    width: 80px;
-    height: 50px;
+    width: 6em;
+    height: 2em;
   }
   &:hover {
     transform: scale(1.1); /* Увеличиваем размер на 10% */

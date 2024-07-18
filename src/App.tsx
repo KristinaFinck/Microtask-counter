@@ -97,8 +97,6 @@ function App() {
                 minHeight='100%'
                 width='80%'
                 border='none'
-
-
             >
                 {/*Left external container */}
                 <Container
@@ -144,22 +142,14 @@ function App() {
                     {/*Set button container*/}
                     <Container
                         flex='1'
-
                         width='100%'
                     >
                         <Button
-
                             onClick={onClickSet}
                             disabled={isSetButtonDisabled}
-                            backgroundColor='secondary'
-                            color='primary'
-                            width='80px'
-                            height='50px'
-                            justifyContent='center'
-                            alignItems='center'
-
-                            fontSize='1em'
-                        >set</Button>
+                        >
+                            set
+                        </Button>
                     </Container>
                 </Container>
                 {/* Right external container*/}
@@ -204,28 +194,17 @@ function App() {
 
                             onClick={onClickAddCount}
                             disabled={isIncButtonDisabled}
-                            backgroundColor='secondary'
-                            color='primary'
-                            width='80px'
-                            height='50px'
-                            justifyContent='center'
-                            alignItems='center'
-
-                            fontSize='1em'
-                        >inc</Button>
+                        >
+                            inc
+                        </Button>
 
                         <Button
 
                             onClick={onClickReset}
                             disabled={isResetButtonDisabled}
-                            backgroundColor='secondary'
-                            color='primary'
-                            width='80px'
-                            height='50px'
-                            justifyContent='center'
-                            alignItems='center'
-
-                            fontSize='1em'>reset</Button>
+                           >
+                            reset
+                        </Button>
                     </Container>
                 </Container>
             </Container>

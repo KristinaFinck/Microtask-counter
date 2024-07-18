@@ -53,7 +53,7 @@ export const Container = styled.div<InternalProps>`
   align-items: ${({alignItems}) => alignItems || 'center'};
   max-width: ${(props => props.maxWidth && 'auto')};
   width: ${({width}) => width};
-  padding: ${({padding}) => padding || '3%'};
+  padding: ${({padding}) => padding || '0'};
   border: ${({border}) => border || 'solid 2px cyan'};
   border-radius: 10px;
   font-size: ${({fontSize}) => fontSize};
