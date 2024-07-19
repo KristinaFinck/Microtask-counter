@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/KristinaFinck/Microtask-counter/static/css/main.e6c13ad2.css",
+    "main.js": "/KristinaFinck/Microtask-counter/static/js/main.3bda3864.js",
+    "static/js/787.5fae6adb.chunk.js": "/KristinaFinck/Microtask-counter/static/js/787.5fae6adb.chunk.js",
+    "index.html": "/KristinaFinck/Microtask-counter/index.html",
+    "main.e6c13ad2.css.map": "/KristinaFinck/Microtask-counter/static/css/main.e6c13ad2.css.map",
+    "main.3bda3864.js.map": "/KristinaFinck/Microtask-counter/static/js/main.3bda3864.js.map",
+    "787.5fae6adb.chunk.js.map": "/KristinaFinck/Microtask-counter/static/js/787.5fae6adb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.3bda3864.js"
+  ]
+}
