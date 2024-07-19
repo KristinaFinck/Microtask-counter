@@ -25,7 +25,7 @@ function App() {
     let onChangeMaxInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const inputMaxValue = Number(e.currentTarget.value);
         setSettingMessage("enter values and press 'set'");
-        if (inputMaxValue >= 0) {
+        if (inputMaxValue >= 0 && startValue >= 0 ) {
             setSetButtonDisabled(false);
             setMaxValue(inputMaxValue)
             setErrorMessage('');
@@ -43,7 +43,7 @@ function App() {
     let onChangeStartInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const inputStartValue = Number(e.currentTarget.value)
         setSettingMessage("enter values and press 'set'");
-        if (inputStartValue >= 0 && inputStartValue < maxValue) {
+        if (inputStartValue >= 0  && inputStartValue < maxValue) {
             setSetButtonDisabled(false);
             setStartValue(inputStartValue)
             setErrorMessage('');
