@@ -58,6 +58,19 @@ export const StyledButton = styled.button<ButtonPropsType>`
     outline: none; /* Убираем фокус */
     border: none; /* Убираем границу */
   }
+  @media (max-width: 768px) {
+ width: 3em;
+    font-size: 1.5em ;
+    &:disabled {
+      width: 3em;
+      font-size: 1.5em ;
+    }
+  }
+  @media (max-width: 480px) {
+    width: 6em;
+    font-size: 2em ;
+  }
+  
 `;
 
 // Компонент кнопки

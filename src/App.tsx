@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import {Button} from "./button/Button";
-import {Input} from './input/Input';
+import {Input} from "./input/Input";
+
 
 import {ThemeProvider} from 'styled-components';
 import {
@@ -107,7 +108,7 @@ function App() {
                 >
                     {/*Left Internal container */}
                     <Container
-
+                        alignSelf='stretch'
                         width='100%'
                         flexDirection='column'
                     >
@@ -118,7 +119,7 @@ function App() {
                             border='none'
                         >
                             <StyledSpan> max value</StyledSpan>
-                            <StyledInput
+                            <Input
                                 type='number'
                                 value={maxValue}
                                 onChange={onChangeMaxInputHandler}
@@ -132,7 +133,7 @@ function App() {
                             padding='0'
                         >
                             <StyledSpan> start value</StyledSpan>
-                            <StyledInput
+                            <Input
                                 type='number'
                                 value={startValue}
                                 onChange={onChangeStartInputHandler}
@@ -166,6 +167,7 @@ function App() {
                     <Container
                         flex='2'
                         width='100%'
+
                     >
                         {settingMessage ? (
                             <StyledSpan color={theme.colors.secondary}>
@@ -179,6 +181,7 @@ function App() {
                             <StyledSpan
                                 fontSize="4em"
                                 color={currentValue === maxValue && currentValue > 0 ? theme.colors.errorColor : theme.colors.secondary}
+                                isMediaIncreaseFontSize={true}
                             >
                                 {currentValue}
                             </StyledSpan>
@@ -188,11 +191,8 @@ function App() {
                     {/*Inc-Reset buttons container*/}
                     <Container
                         width='100%'
-
-
                     >
                         <Button
-
                             onClick={onClickAddCount}
                             disabled={isIncButtonDisabled}
                         >

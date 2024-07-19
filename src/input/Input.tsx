@@ -1,12 +1,15 @@
 import React, {ChangeEvent} from 'react';
+import {StyledInput} from "../styles/Styles";
 
 type InputType = {
     type: string
     value: number
-    onChange: (e: ChangeEvent<HTMLInputElement>)=>void
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void
+    hasError: boolean
 }
-export const Input = (props:InputType) => {
+export const Input = (props: InputType) => {
     return (
-        <input type = {props.type} value = {props.value} onChange={props.onChange} />
+        <StyledInput type={props.type} value={props.value} onChange={props.onChange}
+                     hasError={props.hasError} />
     )
 }

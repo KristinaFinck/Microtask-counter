@@ -1,4 +1,4 @@
-import styled, {createGlobalStyle} from 'styled-components';
+import styled, {css, createGlobalStyle} from 'styled-components';
 import {FC, JSXElementConstructor, ReactElement} from "react";
 import {ThemeType, theme} from './theme'
 
@@ -38,10 +38,11 @@ type InternalProps = {
     height?: string
     minHeight?: string
     padding?: string
-    fontSize?: string
+
     flex?: string
     border?: string
     alignSelf?: string
+
 
 }
 // Контейнер
@@ -56,9 +57,22 @@ export const Container = styled.div<InternalProps>`
   padding: ${({padding}) => padding || '20px 0'};
   border: ${({border}) => border || 'solid 2px cyan'};
   border-radius: 10px;
-  font-size: ${({fontSize}) => fontSize};
   flex: ${({flex}) => flex || '1'};
   align-self: ${({alignSelf}) => alignSelf};
+  
+  
+  
+  @media (max-width: 767px) {
+    padding: 5px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 5px;
+    height: 100vh;
+    padding: 5px;
+  }
+
 `;
 
 type InputProps = {
@@ -72,6 +86,7 @@ type InputProps = {
     theme?: ThemeType
     textAlign?: string;
 }
+
 export const StyledInput = styled.input<InputProps>`
   background-color: ${({hasError}) => (hasError ? 'lightcoral' : 'lightsteelblue')};
   color: ${({theme}) => theme.colors.primary};
@@ -83,6 +98,9 @@ export const StyledInput = styled.input<InputProps>`
   
   &:focus {
     outline: none; /* Убираем фокус */
+  }
+  @media (max-width: 767px) {
+    font-size: 1.5em;
   }
 `
 
@@ -96,14 +114,28 @@ type SpanType = {
     alignItems?: string
     justifyContent?: string
     whiteSpace?: string
+    isMediaIncreaseFontSize?: boolean;
 
 }
 export const StyledSpan = styled.span<SpanType>`
- color: ${({hasError, theme, color}) => (hasError ? theme.colors.errorColor :  color || theme.colors.secondary) };
-font-size: ${({fontSize}) => fontSize || '1.5em'};
+  color: ${({hasError, theme, color}) => (hasError ? theme.colors.errorColor : color || theme.colors.secondary)};
+  font-size: ${({fontSize}) => fontSize || '1.5em'};
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+
+  @media (max-width: 767px) {
+    font-size: ${({isMediaIncreaseFontSize}) => isMediaIncreaseFontSize ? '5em' : '1em'};
+    white-space: normal;
+    word-break: normal;
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    font-size: ${({isMediaIncreaseFontSize}) => isMediaIncreaseFontSize ? '5em' : '2em'};
+    white-space: normal;
+    text-align: center;
+  }
   
+
 `
