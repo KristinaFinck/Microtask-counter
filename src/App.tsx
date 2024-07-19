@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Button} from "./button/Button";
 import {Input} from "./input/Input";
 
@@ -12,15 +12,27 @@ import {
 import {theme} from "./styles/theme";
 
 function App() {
-    let [startValue, setStartValue] = useState<number>(0)
+    let [startValue, setStartValue] = useState<number>(() =>{
+        const savedStartValue = localStorage.getItem('startValue');
+        return savedStartValue !==null? JSON.parse(savedStartValue) : 0;
+    })
     let [currentValue, setCurrentValue] = useState<number>(startValue)
-    let [maxValue, setMaxValue] = useState<number>(0)
+    let [maxValue, setMaxValue] = useState<number>(() => {
+        const savedMaxValue = localStorage.getItem('maxValue');
+        return savedMaxValue !== null? JSON.parse(savedMaxValue) : 0;
+    })
     let [isSetButtonDisabled, setSetButtonDisabled] = useState(true)
     let [errorMessage, setErrorMessage] = useState('')
     let [settingMessage, setSettingMessage] = useState('')
     let [isIncButtonDisabled, setIncButtonDisabled] = useState(false)
     let [isResetButtonDisabled, setResetButtonDisabled] = useState(false)
 
+     useEffect(() => {
+         localStorage.setItem('startValue', JSON.stringify(startValue));
+     },[startValue]);
+     useEffect(() => {
+         localStorage.setItem('maxValue', JSON.stringify(maxValue));
+     }, [maxValue])
     let error = "incorrect value!"
     let onChangeMaxInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const inputMaxValue = Number(e.currentTarget.value);
